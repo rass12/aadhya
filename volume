@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Template to create EC2 Volume with parameters
+Parameters: 
+  VolumeSize:
+    Type: String
+    Default: 5
+    AllowedValues: 
+      - 5
+      - 10
+      - 20
+      - 50
+    Description: select volumesize.
+  Volumetypeparameter:
+    Type: String
+    Default: io1
+    AllowedValues: 
+      - io1
+      - gp2
+      - sc1
+    Description: select type of volume.
+  IOPSparam:
+    Type: String
+    Default: 100
+    AllowedValues: 
+      - 100
+      - 200
+      - 500
+    Description: select iops
+Resources:
+  
+  MyFirstVolume:
+    
+    Type: 'AWS::EC2::Volume'
+    
+    Properties:
+      
+      Size:
+        Ref: VolumeSize   
+      VolumeType:
+        Ref: Volumetypeparameter     
+      Iops:
+        Ref: IOPSparam
+      AvailabilityZone: us-east-2c
